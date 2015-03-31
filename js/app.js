@@ -92,7 +92,7 @@ Game.prototype.play = function()
 Game.prototype.setFromBase = function(button)
 {
     this.fromBase = $(button).data("base");
-    $(".from button").removeClass("success");å
+    $(".from button").removeClass("success");
     $(button).addClass("success");
     this.play();
 }
