@@ -9157,3 +9157,42 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
+/* line 4, ../scss/app.scss */
+body {
+  background-color: #FFF;
+  padding-top: 100px;
+}
+
+/* line 10, ../scss/app.scss */
+tr.correct td {
+  color: #48AA45;
+}
+
+/* line 16, ../scss/app.scss */
+tr.incorrect td {
+  color: #BB1519;
+}
+
+/* line 21, ../scss/app.scss */
+#from_box {
+  border: 3px solid #A4B7BB;
+  margin: 10px 0;
+  font-size: 40px;
+  padding: 30px;
+}
+
+/* line 28, ../scss/app.scss */
+#answer_box {
+  border: 0px;
+  border-bottom: 3px solid #A4B7BB;
+  margin: 10px 0;
+  height: 125px;
+  font-size: 40px;
+  background-color: none;
+  padding-left: 30px;
+}
+
+/* line 38, ../scss/app.scss */
+.range_edit {
+  display: none;
+}
