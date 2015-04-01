@@ -144,7 +144,7 @@ Game.prototype.answer = function()
     if(this.fromBase == 2)
         converted = splitBinary(converted);
 
-    $('tbody').prepend('<tr class="'+tdClass+'"><td>'+converted+'</td><td>'+this.fromBase +' -> '+this.toBase+'</td><td>'+this.current.toString(this.toBase)+'</td><td>'+answer+'</td></tr>');
+    $('tbody').prepend('<tr class="'+tdClass+'"><td>'+converted.toUpperCase()+'</td><td>'+this.fromBase +' -> '+this.toBase+'</td><td>'+this.current.toString(this.toBase).toUpperCase()+'</td><td>'+answer.toUpperCase()+'</td></tr>');
 
     this.play();
     $("#answer_box").val("");
