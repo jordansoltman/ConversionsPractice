@@ -1,5 +1,5 @@
-// Foundation JavaScript
-// Documentation can be found at: http://foundation.zurb.com/docs
+// This code is messy..
+
 $(document).foundation();
 
 $(document).ready(function()
@@ -7,6 +7,7 @@ $(document).ready(function()
     $("#answer_box").focus();
     var game = new Game(10);
     game.initialize();
+    console.log(splitBinary("101003101"));
 
 });
 
@@ -14,6 +15,20 @@ function isInt(value) {
   return !isNaN(value) &&
          parseInt(Number(value)) == value &&
          !isNaN(parseInt(value, 10));
+}
+
+function splitBinary(value) {
+    var padding = 4 - value.length % 4; // calculate the padding
+    value = "" + value; // make it a string
+    var split = "";
+    for(var i = 0; i < value.length/4; i++)
+    {
+        split = value.substring(value.length - (i+1) * 4, value.length - i * 4) + " " + split;
+    }
+    if (padding != 4)
+        for (var i = 0; i < padding; i++)
+            split = "0"+split;
+    return split;
 }
 
 function Game(num)
@@ -86,6 +101,10 @@ Game.prototype.play = function()
     var num = Math.floor(Math.random() * (this.upper_range - this.lower_range + 1)) + this.lower_range;
     var converted = num.toString(this.fromBase);
     this.current = num;
+
+    // If it's binary we'll format it a bit first
+    if(this.fromBase == 2)
+        converted = splitBinary(converted);
     $("#from_box").html(converted.toUpperCase());
 }
 
@@ -121,7 +140,13 @@ Game.prototype.answer = function()
         $('body').animate({'background-color': '#FFFFFF'}, 200);
     });
 
-    $('tbody').prepend('<tr class="'+tdClass+'"><td>'+this.current.toString(this.fromBase)+'</td><td>'+this.fromBase +' -> '+this.toBase+'</td><td>'+this.current.toString(this.toBase)+'</td><td>'+answer+'</td></tr>');
+    // Format for the table
+    converted = this.current.toString(this.fromBase);
+
+    if(this.fromBase == 2)
+        converted = splitBinary(converted);
+
+    $('tbody').prepend('<tr class="'+tdClass+'"><td>'+converted+'</td><td>'+this.fromBase +' -> '+this.toBase+'</td><td>'+this.current.toString(this.toBase)+'</td><td>'+answer+'</td></tr>');
 
     this.play();
     $("#answer_box").val("");
