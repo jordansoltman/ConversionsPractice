@@ -123,7 +123,7 @@ Game.prototype.setToBase = function(button)
 
 Game.prototype.answer = function()
 {
-    var answer = $("#answer_box").val();
+    var answer = $("#answer_box").val().toUpperCase();
 
     var converted = parseInt(answer, this.toBase);
 
@@ -139,12 +139,22 @@ Game.prototype.answer = function()
     });
 
     // Format for the table
-    converted = this.current.toString(this.fromBase);
+    converted = this.current.toString(this.fromBase).toUpperCase();
+
+    var correct = this.current.toString(this.toBase).toUpperCase();
 
     if(this.fromBase == 2)
+    {
         converted = splitBinary(converted);
+    }
 
-    $('tbody').prepend('<tr class="'+tdClass+'"><td>'+converted.toUpperCase()+'</td><td>'+this.fromBase +' &#10095; '+this.toBase+'</td><td>'+this.current.toString(this.toBase).toUpperCase()+'</td><td>'+answer.toUpperCase()+'</td></tr>');
+    if(this.toBase == 2)
+    {
+        correct = splitBinary(correct);
+        answer = splitBinary(answer);
+    }
+
+    $('tbody').prepend('<tr class="'+tdClass+'"><td>'+converted+'</td><td>'+this.fromBase +' &#10095; '+this.toBase+'</td><td>'+correct+'</td><td>'+answer+'</td></tr>');
 
     this.play();
     $("#answer_box").val("");
