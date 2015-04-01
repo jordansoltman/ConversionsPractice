@@ -66,19 +66,29 @@ function Game(num)
 
     $("#upper_range").change(function(){
         var value = Number($("#upper_range").val());
-        if(!isInt(value) || value < 0 || value < self.lower_range)
-            value = self.lower_range + 10;
+        if(!isInt(value) || value < 0)
+            value = self.lower_range;
         self.upper_range = value;
         $("#upper_range").val(value);
+        if (value < self.lower_range)
+        {
+            self.lower_range = value;
+            $("#lower_range").val(value);
+        }
         self.play();
     });
 
     $("#lower_range").change(function(){
         var value = Number($("#lower_range").val());
-        if(!isInt(value) || value < 0 || value > self.upper_range)
+        if(!isInt(value) || value < 0)
             value = 0;
         self.lower_range = value;
         $("#lower_range").val(value);
+        if(value > self.upper_range)
+        {
+            self.upper_range = value;
+            $("#upper_range").val(value);
+        }
         self.play();
     });
 
