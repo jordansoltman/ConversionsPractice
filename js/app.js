@@ -7,7 +7,6 @@ $(document).ready(function()
     $("#answer_box").focus();
     var game = new Game(10);
     game.initialize();
-    console.log(splitBinary("101003101"));
 
 });
 
@@ -96,8 +95,7 @@ Game.prototype.initialize = function()
 
 Game.prototype.play = function()
 {
-    console.log(this.upper_range);
-    console.log(this.lower_range);
+
     var num = Math.floor(Math.random() * (this.upper_range - this.lower_range + 1)) + this.lower_range;
     var converted = num.toString(this.fromBase);
     this.current = num;
